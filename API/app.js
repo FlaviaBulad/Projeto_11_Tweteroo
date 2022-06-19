@@ -14,7 +14,7 @@ app.post('/sign-up', (req, res) => {
     avatar: req.body.avatar
  }
  users.push(user);
- res.send(req.body);
+ res.send("OK");
 });
 
 app.post("/tweets", (req, res) => {
@@ -23,14 +23,8 @@ app.post("/tweets", (req, res) => {
         avatar: req.body.avatar,
         tweet: req.body.tweet
     }
-    
-    tweets.unshift(tweet);
     res.send("OK");
-
 });
-
-
-
 
 app.listen(5000, () => {
     console.log("Server is running");
