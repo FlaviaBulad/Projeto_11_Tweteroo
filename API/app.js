@@ -9,6 +9,11 @@ const users = [];
 const tweets = [];
 
 app.post("/sign-up", (req, res) => {
+  if (req.body.username === "" || req.body.avatar === "") {
+    res.status(400).send("Preencha os campos!");
+    return;
+  }
+
   const user = {
     username: req.body.username,
     avatar: req.body.avatar,
@@ -19,6 +24,11 @@ app.post("/sign-up", (req, res) => {
 });
 
 app.post("/tweets", (req, res) => {
+  if (req.headers.user === "" || req.body.tweet === "") {
+    res.status(400).send("Preencha os campos!");
+    return;
+  }
+
   const tweet = req.body;
   const user = users.find((user) => user.username === req.body.username);
 
