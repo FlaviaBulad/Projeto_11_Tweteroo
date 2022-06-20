@@ -23,7 +23,20 @@ app.post("/tweets", (req, res) => {
         avatar: req.body.avatar,
         tweet: req.body.tweet
     }
+    tweets.push(tweet);
     res.send("OK");
+});
+
+app.get("/tweets", (req, res) => {
+    
+    if (tweets.length <= 10) {
+        res.send(tweets);
+      }
+
+      else if (tweets.length > 10) {
+        tweets.splice(0, 1);
+        res.send(tweets);
+      }
 });
 
 app.listen(5000, () => {
