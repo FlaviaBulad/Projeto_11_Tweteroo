@@ -13,16 +13,16 @@ app.post("/sign-up", (req, res) => {
     username: req.body.username,
     avatar: req.body.avatar,
   };
+
   users.push(user);
   res.status(200).send("OK");
 });
 
 app.post("/tweets", (req, res) => {
-  const tweet = {
-    username: req.body.username,
-    avatar: req.body.avatar,
-    tweet: req.body.tweet,
-  };
+  const tweet = req.body;
+  const user = users.find((user) => user.username === req.body.username);
+
+  tweet.avatar = user.avatar;
   tweets.push(tweet);
   res.status(200).send("OK");
 });
